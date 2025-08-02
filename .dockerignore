@@ -1,0 +1,23 @@
+# git
+.git/
+.gitignore
+README.md
+
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# build
+dist/
+coverage
+*.tsbuildinfo
+.env
+.env.local
+
+# Docker
+etc/
+docker-compose.yml
+Dockerfile
