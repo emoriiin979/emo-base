@@ -1,6 +1,9 @@
 import { Hono } from 'hono'
+import authRoutes from './routes/auth-route.js'
 
 const app = new Hono()
+
+app.route('/auth', authRoutes)
 
 app.get('/', (c) => {
   return c.render(
