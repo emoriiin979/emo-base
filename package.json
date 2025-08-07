@@ -2,9 +2,9 @@
   "name": "emo-base",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch app/adapters/node-adapter.ts",
+    "dev": "tsx watch app/index.tsx",
     "build": "tsc",
-    "start": "node dist/adapters/node-adapter.js"
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.18.1",
