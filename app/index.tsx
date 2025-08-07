@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import authRoutes from './routes/auth-route.js'
+import authRoutes from './auth/auth-route.js'
 
 const app = new Hono()
 
