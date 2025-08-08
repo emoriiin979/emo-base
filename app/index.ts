@@ -1,4 +1,6 @@
+import 'dotenv/config'
 import { Hono } from 'hono'
+import { csrf } from 'hono/csrf'
 import { serveStatic } from '@hono/node-server/serve-static'
 import FileStore from './core/session/stores/FileStore.js'
 import { sessionMiddleware } from 'hono-sessions'
@@ -15,8 +17,17 @@ app.use('/*', serveStatic({ root: './public' }))
 const store = new FileStore()
 app.use('/*', sessionMiddleware({
   store,
+  encryptionKey: process.env.SESSION_ENCRYPTION_KEY,
   expireAfterSeconds: 900,
+  cookieOptions: {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'Lax',
+  },
 }))
+
+// CSRF設定
+app.use(csrf())
 
 // ルーティング設定
 app.route('/auth', authRoutes)
