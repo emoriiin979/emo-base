@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { serveStatic } from '@hono/node-server/serve-static'
 import FileStore from './core/session/stores/FileStore.js'
 import { sessionMiddleware } from 'hono-sessions'
-import authRoutes from './routes/auth-route.js'
+import authRoutes from './routes/authRoute.js'
 import HealthPage from './pages/HealthPage.js'
 import { handle } from './core/adapters/NodeAdapter.js'
 
