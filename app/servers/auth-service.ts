@@ -18,11 +18,19 @@ export const postPasswordLogin = async (c: Context) => {
   const { userid, password } = await c.req.parseBody() as formData
 
   if (users[userid] && users[userid] === password) {
+    const session = c.get('session')
+    await session.set('userid', userid)
+    await session.set('is_logged_in', true)
+
     // 認証成功
-    return c.text('success!')
+    return c.json({
+      message: 'login success',
+    })
   } else {
     // 認証失敗
-    return c.text('failed!')
+    return c.json({
+      message: 'login failed',
+    }, 401)
   }
 }
 
@@ -42,4 +50,12 @@ export const getGoogleLoginRedirect = (c: Context) => {
  */
 export const getGoogleLoginCallback = (c: Context) => {
   return c.text('google callback')
+}
+
+export const getLogout = (c: Context) => {
+  const session = c.get('session')
+  session.deleteSession()
+  return c.json({
+    message: 'logout success',
+  })
 }

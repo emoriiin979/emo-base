@@ -1,5 +1,5 @@
 import type { Context } from 'hono';
-import { Header } from '../components/header.js'
+import { Header } from './components/header.js'
 
 export const getLoginPage = (c: Context) => {
   return c.render(

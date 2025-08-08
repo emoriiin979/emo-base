@@ -2,7 +2,7 @@
   "name": "emo-base",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch app/index.tsx",
+    "dev": "tsx watch app/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
