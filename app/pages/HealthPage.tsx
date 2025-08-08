@@ -1,7 +1,7 @@
 import type { Context } from 'hono';
-import { Header } from './components/header.js'
+import { Header } from './components/Header.js'
 
-export const getHealthPage = (c: Context) => {
+const HealthPage = (c: Context) => {
   return c.render(
     <html>
       <Header title="Health" />
@@ -11,3 +11,5 @@ export const getHealthPage = (c: Context) => {
     </html>
   )
 }
+
+export default HealthPage

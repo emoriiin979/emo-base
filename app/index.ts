@@ -3,7 +3,7 @@ import { serveStatic } from '@hono/node-server/serve-static'
 import FileStore from './core/sessions/stores/FileStore.js'
 import { sessionMiddleware } from 'hono-sessions'
 import authRoutes from './routes/auth-route.js'
-import { getHealthPage } from './pages/health-page.js'
+import HealthPage from './pages/HealthPage.js'
 import { handle } from './core/adapters/node-adapter.js'
 
 const app = new Hono()
@@ -21,7 +21,7 @@ app.use('/*', sessionMiddleware({
 // ルーティング設定
 app.route('/auth', authRoutes)
 
-app.get('/', getHealthPage)
+app.get('/', HealthPage)
 
 // アダプター設定
 handle(app)
