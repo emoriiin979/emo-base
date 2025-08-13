@@ -6,10 +6,7 @@ import FileStore from './core/session/stores/FileStore.js'
 import { sessionMiddleware } from 'hono-sessions'
 import authRoutes from './routes/authRoute.js'
 import HealthPage from './pages/HealthPage.js'
-import {
-  handle,
-  NodeAdapter,
-} from './core/adapters/index.js'
+import { handleNodeAdapter } from './core/adapters/index.js'
 
 const app = new Hono()
 
@@ -38,4 +35,4 @@ app.route('/auth', authRoutes)
 app.get('/', HealthPage)
 
 // アダプター設定
-handle(new NodeAdapter(app))
+handleNodeAdapter(app)

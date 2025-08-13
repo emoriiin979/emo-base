@@ -1,7 +1,5 @@
-import handle from './handle.js'
-import NodeAdapter from './NodeAdapter.js'
+import handleNodeAdapter from './handleNodeAdapter.js'
 
 export {
-  handle,
-  NodeAdapter,
+  handleNodeAdapter,
 }
