@@ -1,5 +1,6 @@
 import type { Context } from 'hono';
 import { PrismaClient } from '../../generated/prisma/index.js';
+import bcrypt from 'bcrypt'
 
 /**
  * パスワード認証
@@ -17,7 +18,7 @@ const loginPassword = async (c: Context) => {
   const user = await prisma.user.findFirst({
     where: { name: userid }
   })
-  if (user && user['password'] === password) {
+  if (user && await bcrypt.compare(password, user.password)) {
     const session = c.get('session')
     await session.set('userid', userid)
     await session.set('is_logged_in', true)
