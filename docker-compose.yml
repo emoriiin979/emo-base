@@ -8,3 +8,15 @@ services:
     volumes:
       - .:/app
     command: npm run dev
+    depends_on:
+      - db
+  db:
+    build:
+      context: ./etc/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+    ports:
+      - 3306:3306
+    volumes:
+      - ./etc/mysql/data:/var/lib/mysql

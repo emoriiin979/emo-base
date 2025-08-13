@@ -1,0 +1,2 @@
+ARG MYSQL_IMAGE=mysql:8.4.6-oraclelinux9
+FROM ${MYSQL_IMAGE}
