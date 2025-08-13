@@ -1,9 +1,5 @@
 import type { Context } from 'hono';
-
-// ダミーユーザー
-const users: Record<string, string> = {
-  'emo-user': 'password123',
-}
+import { PrismaClient } from '../../generated/prisma/index.js';
 
 /**
  * パスワード認証
@@ -17,7 +13,11 @@ const loginPassword = async (c: Context) => {
   }
   const { userid, password } = await c.req.parseBody() as formData
 
-  if (users[userid] && users[userid] === password) {
+  const prisma = new PrismaClient()
+  const user = await prisma.user.findFirst({
+    where: { name: userid }
+  })
+  if (user && user['password'] === password) {
     const session = c.get('session')
     await session.set('userid', userid)
     await session.set('is_logged_in', true)
