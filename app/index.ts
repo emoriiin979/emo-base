@@ -9,7 +9,6 @@ import authRoutes from './routes/authRoute.js'
 import HealthPage from './pages/HealthPage.js'
 import { handleNodeAdapter } from './core/adapters/index.js'
 import ipMiddleware from './core/middlewares/ipMiddleware.js'
-import { changeLanguage } from 'i18next'
 
 const app = new Hono()
 

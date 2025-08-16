@@ -1,4 +1,6 @@
 import i18next from 'i18next'
+import jaTranslations from './locales/ja.js'
+import enTranslations from './locales/en.js'
 
 const initLocale = () => {
   i18next.init({
@@ -6,18 +8,10 @@ const initLocale = () => {
     fallbackLng: 'ja',
     resources: {
       ja: {
-        translation: {
-          loginAttemptExceeded: 'ログイン試行回数が上限に達しました',
-          loginFailed: 'ログインに失敗しました',
-          loginSuccess: 'ログインに成功しました',
-        },
+        translation: jaTranslations,
       },
       en: {
-        translation: {
-          loginAttemptExceeded: 'Login attempt exceeded',
-          loginFailed: 'Login failed',
-          loginSuccess: 'Login success',
-        },
+        translation: enTranslations,
       },
     },
   })
