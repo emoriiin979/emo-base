@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { Hono } from 'hono'
 import { serveStatic } from '@hono/node-server/serve-static'
-import initLocale from './core/messages/initLocale.js'
+import { languageDetector } from 'hono/language'
 import FileStore from './core/session/stores/FileStore.js'
 import { sessionMiddleware } from 'hono-sessions'
 import { csrf } from 'hono/csrf'
@@ -15,8 +15,11 @@ const app = new Hono()
 // 静的ファイル設定
 app.use('/*', serveStatic({ root: './public' }))
 
-// 言語ファイル設定
-initLocale()
+// 言語情報取得
+app.use(languageDetector({
+  supportedLanguages: ['ja', 'en'],
+  fallbackLanguage: 'ja',
+}))
 
 // IPアドレス取得
 app.use('/*', ipMiddleware)

@@ -2,6 +2,7 @@ import type { Context } from 'hono'
 import { PrismaClient } from '../../generated/prisma/index.js'
 import bcrypt from 'bcrypt'
 import i18next from 'i18next'
+import initLocale from '../../core/messages/initLocale.js'
 
 /**
  * 認証失敗が回復するまでにかかる時間(hour)
@@ -32,6 +33,9 @@ type formData = {
  * @returns - jsonレスポンス
  */
 const loginPassword = async (c: Context) => {
+  // 言語ファイル取得
+  initLocale(c)
+
   // 入力情報の取得
   const { userid, password } = await c.req.parseBody() as formData
   const ip = c.get('ip') as string

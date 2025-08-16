@@ -1,11 +1,12 @@
+import type { Context } from 'hono'
 import i18next from 'i18next'
 import jaTranslations from './locales/ja.js'
 import enTranslations from './locales/en.js'
 
-const initLocale = () => {
+const initLocale = (c: Context) => {
   i18next.init({
-    lng: 'ja',
-    fallbackLng: 'ja',
+    lng: c.get('language'),
+    fallbackLng: c.get('fallbackLanguage'),
     resources: {
       ja: {
         translation: jaTranslations,
