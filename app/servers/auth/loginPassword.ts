@@ -1,6 +1,7 @@
-import type { Context } from 'hono';
-import { PrismaClient } from '../../generated/prisma/index.js';
+import type { Context } from 'hono'
+import { PrismaClient } from '../../generated/prisma/index.js'
 import bcrypt from 'bcrypt'
+import i18next from 'i18next'
 
 /**
  * 認証失敗が回復するまでにかかる時間(hour)
@@ -56,7 +57,7 @@ const loginPassword = async (c: Context) => {
   })
   if (cntUserFail >= MAX_ATTEMPTS || cntIpFail >= MAX_ATTEMPTS) {
     return c.json({
-      message: 'login attempt exceeded',
+      message: i18next.t('loginAttemptExceeded'),
     }, 401)
   }
 
@@ -77,7 +78,7 @@ const loginPassword = async (c: Context) => {
     await session.set('userid', userid)
     await session.set('is_logged_in', true)
     return c.json({
-      message: 'login success',
+      message: i18next.t('loginSuccess'),
     })
   } else {
     // 認証失敗
@@ -89,7 +90,7 @@ const loginPassword = async (c: Context) => {
       }
     })
     return c.json({
-      message: 'login failed',
+      message: i18next.t('loginFailed'),
     }, 401)
   }
 }
