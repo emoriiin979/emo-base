@@ -5,12 +5,12 @@ import bcrypt from 'bcrypt'
 /**
  * 認証失敗が回復するまでにかかる時間(hour)
  */
-const recoveryHour: number = 1
+const RECOVERY_HOURS: number = 1
 
 /**
  * 認証失敗になる回数
  */
-const maxAttempt: number = 5
+const MAX_ATTEMPTS: number = 5
 
 /**
  * Prismaクライアント
@@ -36,7 +36,7 @@ const loginPassword = async (c: Context) => {
   const ip = c.get('ip') as string
 
   // ログイン回数確認
-  const gteCreatedAt = new Date(Date.now() - 1000 * 60 * 60 * recoveryHour)
+  const gteCreatedAt = new Date(Date.now() - 1000 * 60 * 60 * RECOVERY_HOURS)
   const cntUserFail = await prisma.login.count({
     where: {
       name: userid,
@@ -54,7 +54,7 @@ const loginPassword = async (c: Context) => {
       created_at: { gte: gteCreatedAt },
     }
   })
-  if (cntUserFail >= maxAttempt || cntIpFail >= maxAttempt) {
+  if (cntUserFail >= MAX_ATTEMPTS || cntIpFail >= MAX_ATTEMPTS) {
     return c.json({
       message: 'login attempt exceeded',
     }, 401)
