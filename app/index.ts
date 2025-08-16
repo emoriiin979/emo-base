@@ -7,11 +7,15 @@ import { sessionMiddleware } from 'hono-sessions'
 import authRoutes from './routes/authRoute.js'
 import HealthPage from './pages/HealthPage.js'
 import { handleNodeAdapter } from './core/adapters/index.js'
+import ipMiddleware from './core/middlewares/ipMiddleware.js'
 
 const app = new Hono()
 
 // 静的ファイル設定
 app.use('/*', serveStatic({ root: './public' }))
+
+// IPアドレス取得
+app.use('/*', ipMiddleware)
 
 // セッション設定
 const store = new FileStore()

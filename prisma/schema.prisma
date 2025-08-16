@@ -21,3 +21,15 @@ model User {
 
   @@map("users")
 }
+
+model Login {
+  id         Int      @id @default(autoincrement())
+  ip         String
+  name       String?  // ユーザーが存在しない場合は null
+  success    Boolean
+  created_at DateTime @default(now())
+
+  @@map("logins")
+  @@index([ip])
+  @@index([created_at])
+}
