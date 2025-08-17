@@ -1,8 +1,20 @@
-import type { Context } from 'hono';
-import { Header } from '../components/Header.js'
+import { Header } from './components/Header.js'
 
-const LoginPage = (c: Context) => {
-  return c.render(
+/**
+ * 引数型
+ */
+type Props = {
+  userid: string
+  password: string
+}
+
+/**
+ * ログインページ
+ * @param c Context
+ * @returns 
+ */
+export const LoginPageView = (props: Props) => {
+  return (
     <html>
       <Header title="Login" />
       <body>
@@ -18,6 +30,7 @@ const LoginPage = (c: Context) => {
                 id="userid" 
                 name="userid" 
                 placeholder="ユーザーID"
+                value={props.userid}
               />
             </div>
             <div class="form-group">
@@ -26,6 +39,7 @@ const LoginPage = (c: Context) => {
                 id="password" 
                 name="password" 
                 placeholder="パスワード"
+                value={props.password}
               />
             </div>
             <button type="submit" class="submit-btn">
@@ -46,5 +60,3 @@ const LoginPage = (c: Context) => {
     </html>
   )
 }
-
-export default LoginPage

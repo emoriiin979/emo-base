@@ -1,8 +1,7 @@
-import type { Context } from 'hono';
 import { Header } from './components/Header.js'
 
-const HealthPage = (c: Context) => {
-  return c.render(
+export const HealthPageView = () => {
+  return (
     <html>
       <Header title="Health" />
       <body>
@@ -11,5 +10,3 @@ const HealthPage = (c: Context) => {
     </html>
   )
 }
-
-export default HealthPage

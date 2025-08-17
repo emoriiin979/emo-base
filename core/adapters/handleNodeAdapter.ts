@@ -1,4 +1,4 @@
-import type { handle } from './handle.d.js'
+import type { handle } from './handle.js'
 import type { Hono } from 'hono'
 import { serve } from '@hono/node-server'
 

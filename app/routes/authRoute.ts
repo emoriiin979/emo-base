@@ -1,20 +1,18 @@
 import { Hono } from 'hono'
 import {
-  LoginPage,
-} from '../pages/auth/index.js'
-import {
+  loginPage,
   loginPassword,
   loginGoogleRedirect,
   loginGoogleCallback,
   logout,
-} from '../servers/auth/index.js'
+} from '../controllers/authController.js'
 
 const authRoutes = new Hono()
 
-authRoutes.get('/', LoginPage)
+authRoutes.get('/', loginPage)
 authRoutes.post('/', loginPassword)
 authRoutes.get('/google/redirect', loginGoogleRedirect)
 authRoutes.get('/google/callback', loginGoogleCallback)
-authRoutes.get('/logout', logout)
+authRoutes.post('/logout', logout)
 
 export default authRoutes

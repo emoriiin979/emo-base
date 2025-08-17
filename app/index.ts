@@ -2,13 +2,13 @@ import 'dotenv/config'
 import { Hono } from 'hono'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { languageDetector } from 'hono/language'
-import FileStore from './core/session/stores/FileStore.js'
+import FileStore from '../core/session/stores/FileStore.js'
 import { sessionMiddleware } from 'hono-sessions'
 import { csrf } from 'hono/csrf'
 import authRoutes from './routes/authRoute.js'
-import HealthPage from './pages/HealthPage.js'
-import { handleNodeAdapter } from './core/adapters/index.js'
-import ipMiddleware from './core/middlewares/ipMiddleware.js'
+import { healthPage } from './controllers/healthController.js'
+import { handleNodeAdapter } from '../core/adapters/index.js'
+import ipMiddleware from '../core/middlewares/ipMiddleware.js'
 
 const app = new Hono()
 
@@ -43,7 +43,7 @@ app.use(csrf())
 // ルーティング設定
 app.route('/auth', authRoutes)
 
-app.get('/', HealthPage)
+app.get('/', healthPage)
 
 // アダプター設定
 handleNodeAdapter(app)
