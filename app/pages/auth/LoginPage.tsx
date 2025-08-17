@@ -18,7 +18,6 @@ const LoginPage = (c: Context) => {
                 id="userid" 
                 name="userid" 
                 placeholder="ユーザーID"
-                required 
               />
             </div>
             <div class="form-group">
@@ -27,7 +26,6 @@ const LoginPage = (c: Context) => {
                 id="password" 
                 name="password" 
                 placeholder="パスワード"
-                required 
               />
             </div>
             <button type="submit" class="submit-btn">
