@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+  background: linear-gradient(135deg, #ffd1e3 0%, #f7b6d2 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -31,10 +31,9 @@ body {
 }
 
 .login-header img {
-  opacity: 0.94;
+  opacity: 0.8;
   max-width: 250px;
   height: auto;
-  filter: brightness(0.9);
 }
 
 .form-group {
@@ -61,7 +60,7 @@ body {
 
 .form-group input:focus {
   outline: none;
-  border-color: #ff6b9d;
+  border-color: #ffd1e3;
   background: white;
   box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
 }
@@ -120,7 +119,7 @@ body {
 }
 
 .social-btn:hover {
-  border-color: #ff6b9d;
+  border-color: #ffd1e3;
   background: #f8f9fa;
 }
 
