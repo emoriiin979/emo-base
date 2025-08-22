@@ -3,7 +3,7 @@ import initLocale from '../../core/messages/initLocale.js'
 import z from 'zod'
 import { t } from 'i18next'
 import {
-  loginable,
+  isAccountLock,
   authPassword,
   createLoginLog,
 } from '../../app/services/authService.js'
@@ -65,7 +65,7 @@ export const loginPassword = async (c: Context) => {
     const ip: string = c.get('ip')
 
     // ログイン試行回数確認
-    if (await loginable(userid, ip)) {
+    if (await isAccountLock(userid, ip)) {
       return c.render(LoginPageView({
         userid: body.userid,
         password: body.password,

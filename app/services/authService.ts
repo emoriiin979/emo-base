@@ -17,12 +17,12 @@ const MAX_ATTEMPTS: number = 5
 const prisma = new PrismaClient()
 
 /**
- * ログイン試行回数確認
+ * アカウントロック確認
  * @param userid string - ユーザーID
  * @param ip string - IPアドレス
- * @returns Promise<boolean> - ログイン可否
+ * @returns Promise<boolean> - アカウントロック有無
  */
-export const loginable = async (userid: string, ip: string) => {
+export const isAccountLock = async (userid: string, ip: string) => {
   const gteCreatedAt = new Date(Date.now() - 1000 * 60 * 60 * RECOVERY_HOURS)
 
   // ユーザーID単位でカウント
