@@ -62,10 +62,10 @@ export const LoginPageView = (props: Props) => {
           <div class="divider"></div>
           
           <div class="social-login">
-            <a href="/auth/google/redirect" class="social-btn" disabled>
+            <button type="button" class="social-btn" disabled>
               <span class="google-icon"></span>
               Googleでログイン
-            </a>
+            </button>
           </div>
         </div>
       </body>
