@@ -26,27 +26,35 @@ export const isAccountLock = async (userid: string, ip: string) => {
   const gteCreatedAt = new Date(Date.now() - 1000 * 60 * 60 * RECOVERY_HOURS)
 
   // ユーザーID単位でカウント
-  const cntUserFail = await prisma.login.count({
+  const recentUserLogins = await prisma.login.findMany({
     where: {
       name: userid,
-      success: false,
-      created_at: { gte: gteCreatedAt }
-    }
+      created_at: { gte: gteCreatedAt },
+    },
+    orderBy: {
+      created_at: 'desc',
+    },
+    take: MAX_ATTEMPTS,
   })
+  const userFail = recentUserLogins.filter(login => !login.success).length === MAX_ATTEMPTS
 
   // IPアドレス単位でカウント
-  const cntIpFail = await prisma.login.count({
+  const recentIpLogins = await prisma.login.findMany({
     where: {
       AND: [
         { ip: ip },
         { ip: { not: 'unknown' } },
       ],
-      success: false,
       created_at: { gte: gteCreatedAt },
     },
+    orderBy: {
+      created_at: 'desc',
+    },
+    take: MAX_ATTEMPTS,
   })
+  const ipFail = recentIpLogins.filter(login => !login.success).length === MAX_ATTEMPTS
 
-  return cntUserFail >= MAX_ATTEMPTS || cntIpFail >= MAX_ATTEMPTS
+  return userFail || ipFail
 }
 
 /**
