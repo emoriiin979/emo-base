@@ -6,6 +6,9 @@ import { Header } from './components/Header.js'
 type Props = {
   userid: string
   password: string
+  useridError?: string
+  passwordError?: string
+  loginError?: string
 }
 
 /**
@@ -22,7 +25,7 @@ export const LoginPageView = (props: Props) => {
           <div class="login-header">
             <img src="/img/logo.svg" alt="Logo" />
           </div>
-          
+
           <form action="/auth" method="post">
             <div class="form-group">
               <input 
@@ -32,6 +35,9 @@ export const LoginPageView = (props: Props) => {
                 placeholder="ユーザーID"
                 value={props.userid}
               />
+              {props.useridError && (
+                <div class="error-message">{props.useridError}</div>
+              )}
             </div>
             <div class="form-group">
               <input 
@@ -41,10 +47,16 @@ export const LoginPageView = (props: Props) => {
                 placeholder="パスワード"
                 value={props.password}
               />
+              {props.passwordError && (
+                <div class="error-message">{props.passwordError}</div>
+              )}
             </div>
             <button type="submit" class="submit-btn">
               ログイン
             </button>
+            {props.loginError && (
+              <div class="error-message">{props.loginError}</div>
+            )}
           </form>
           
           <div class="divider"></div>

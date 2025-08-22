@@ -154,3 +154,13 @@ body {
     flex-direction: column;
   }
 }
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.95rem;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-left: 2px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}

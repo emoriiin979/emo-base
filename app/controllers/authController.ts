@@ -48,19 +48,29 @@ export const loginPassword = async (c: Context) => {
     const body: formData = await c.req.parseBody()
     const validated = loginSchema.safeParse(body)
     if (!validated.success) {
-      return c.json({
-        message: t('validationFailed'),
-        errors: validated.error.issues.map(issue => issue.message),
-      })
+      const errorMap: Record<string, string> = {}
+      for (const issue of validated.error.issues) {
+        if (issue.path && issue.path.length > 0) {
+          errorMap[issue.path[0] as string] = issue.message
+        }
+      }
+      return c.render(LoginPageView({
+        userid: body.userid,
+        password: body.password,
+        useridError: errorMap.userid,
+        passwordError: errorMap.password,
+      }))
     }
     const { userid, password } = validated.data
     const ip: string = c.get('ip')
 
     // ログイン試行回数確認
     if (await loginable(userid, ip)) {
-      return c.json({
-        message: t('loginAttemptExceeded'),
-      }, 401)
+      return c.render(LoginPageView({
+        userid: body.userid,
+        password: body.password,
+        loginError: t('loginAttemptExceeded'),
+      }))
     }
 
     // パスワード認証
@@ -75,15 +85,18 @@ export const loginPassword = async (c: Context) => {
     } else {
       // 認証失敗
       await createLoginLog(userid, ip, false)
-      return c.json({
-        message: t('loginFailed'),
-      }, 401)
+      return c.render(LoginPageView({
+        userid: body.userid,
+        password: body.password,
+        loginError: t('loginFailed'),
+      }))
     }
   } catch (e) {
-    return c.json({
-      message: t('unknownServerError'),
-      error: e instanceof Error ? e.message : 'unknown error',
-    }, 500)
+    return c.render(LoginPageView({
+      userid: '',
+      password: '',
+      loginError: t('unknownServerError'),
+    }))
   }
 }
 
@@ -119,7 +132,8 @@ export const logout = (c: Context) => {
 
   const session = c.get('session')
   session.deleteSession()
-  return c.json({
-    message: t('logout'),
-  })
+  return c.render(LoginPageView({
+    userid: '',
+    password: '',
+  }))
 }
