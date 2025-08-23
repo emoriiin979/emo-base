@@ -1,4 +1,5 @@
 import { Head } from '../../core/components/Head.js'
+import { t } from 'i18next'
 
 /**
  * 引数型
@@ -32,7 +33,7 @@ export const LoginPageView = (props: Props) => {
                 type="text" 
                 id="userid" 
                 name="userid" 
-                placeholder="ユーザーID"
+                placeholder={t('userid')}
                 value={props.userid}
               />
               {props.useridError && (
@@ -44,7 +45,7 @@ export const LoginPageView = (props: Props) => {
                 type="password" 
                 id="password" 
                 name="password" 
-                placeholder="パスワード"
+                placeholder={t('password')}
                 value={props.password}
               />
               {props.passwordError && (
@@ -52,7 +53,7 @@ export const LoginPageView = (props: Props) => {
               )}
             </div>
             <button type="submit" class="submit-btn">
-              ログイン
+              {t('login')}
             </button>
             {props.loginError && (
               <div class="error-message">{props.loginError}</div>
@@ -64,7 +65,7 @@ export const LoginPageView = (props: Props) => {
           <div class="social-login">
             <button type="button" class="social-btn" disabled>
               <span class="google-icon"></span>
-              Googleでログイン
+              {t('googleLogin')}
             </button>
           </div>
         </div>

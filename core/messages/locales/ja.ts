@@ -12,10 +12,13 @@ const jaTranslations = {
   loginAttemptExceeded: 'ログイン試行回数が上限に達しました',
   loginFailed: 'ログインに失敗しました',
   loginSuccess: 'ログインに成功しました',
-  logout: 'ログアウトしました',
+  logoutSuccess: 'ログアウトしました',
   noData: 'データがありません',
 
   // システム
+  googleLogin: 'Googleでログイン',
+  login: 'ログイン',
+  logout: 'ログアウト',
   nextPage: '次のページ',
   prevPage: '前のページ',
 }

@@ -1,4 +1,5 @@
 import type { FC } from 'hono/jsx'
+import { t } from 'i18next'
 
 type HeaderProps = {
   isLogin: boolean
@@ -15,7 +16,7 @@ export const Header: FC<HeaderProps> = (props) => {
       {props.isLogin ? (
         <form action="/auth/logout" method="post" style={{ display: 'inline' }}>
           <button type="submit" class="logout-btn">
-            ログアウト
+            {t('logout')}
           </button>
         </form>
       ) : (<></>)}
