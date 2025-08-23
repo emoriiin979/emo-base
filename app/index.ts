@@ -6,6 +6,7 @@ import FileStore from '../core/session/stores/FileStore.js'
 import { sessionMiddleware } from 'hono-sessions'
 import { csrf } from 'hono/csrf'
 import authRoutes from './routes/authRoute.js'
+import cmsRoutes from './routes/cmsRoute.js'
 import { healthPage } from './controllers/healthController.js'
 import { handleNodeAdapter } from '../core/adapters/index.js'
 import ipMiddleware from '../core/middlewares/ipMiddleware.js'
@@ -42,6 +43,7 @@ app.use(csrf())
 
 // ルーティング設定
 app.route('/auth', authRoutes)
+app.route('/cms', cmsRoutes)
 
 app.get('/', healthPage)
 

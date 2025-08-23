@@ -13,6 +13,10 @@ const enTranslations = {
   loginFailed: 'Login failed',
   loginSuccess: 'Login success',
   logout: 'Logout',
+
+  // systems
+  nextPage: 'Next page',
+  prevPage: 'Prev page',
 }
 
 export default enTranslations

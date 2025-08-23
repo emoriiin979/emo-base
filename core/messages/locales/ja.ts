@@ -13,6 +13,10 @@ const jaTranslations = {
   loginFailed: 'ログインに失敗しました',
   loginSuccess: 'ログインに成功しました',
   logout: 'ログアウトしました',
+
+  // システム
+  nextPage: '次のページ',
+  prevPage: '前のページ',
 }
 
 export default jaTranslations
