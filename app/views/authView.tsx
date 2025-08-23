@@ -1,4 +1,4 @@
-import { Header } from './components/Header.js'
+import { Head } from '../../core/components/Head.js'
 
 /**
  * 引数型
@@ -19,7 +19,7 @@ type Props = {
 export const LoginPageView = (props: Props) => {
   return (
     <html>
-      <Header title="Login" />
+      <Head title="Login" />
       <body>
         <div class="login-container">
           <div class="login-header">

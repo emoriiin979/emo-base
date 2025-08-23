@@ -1,6 +1,10 @@
 import type { Context } from 'hono'
 import { CmsView } from '../views/cmsView.js'
-import initLocale from '../../core/messages/initLocale.js'
+
+/**
+ * 1ページに表示するコンテンツ数
+ */
+const PER_PAGE = 10
 
 // サンプルデータ
 const blogs = [
@@ -103,18 +107,38 @@ const blogs = [
 ]
 
 /**
- * ブログ記事検索
+ * コンテンツ型
+ */
+type Content = {
+  id: number
+  title: string
+  author: string
+  createdAt: string
+}
+
+/**
+ * ページネーション用ユーティリティ
+ * @param items Content[]
+ * @param page number
+ * @param perPage number
+ * @returns Content[]
+ */
+const paginate = (contents: Content[], page: number, perPage: number): Content[] => {
+  const start = (page - 1) * perPage
+  return contents.slice(start, start + perPage)
+}
+
+/**
+ * コンテンツ検索
  * GET /cms
  * @param c Context
  * @returns 
  */
 export const searchContents = (c: Context) => {
-  // 言語ファイル取得
-  initLocale(c)
-
-  // 一覧ページ表示
   return c.render(CmsView({
-    contents: blogs,
+    contents: paginate(blogs, parseInt(c.req.query('page') ?? '1'), PER_PAGE),
     currentPage: parseInt(c.req.query('page') ?? '1'),
+    countTotalPages: Math.ceil(blogs.length / PER_PAGE),
+    isLogin: c.get('isLogin'),
   }))
 }

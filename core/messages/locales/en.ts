@@ -13,6 +13,7 @@ const enTranslations = {
   loginFailed: 'Login failed',
   loginSuccess: 'Login success',
   logout: 'Logout',
+  noData: 'No data',
 
   // systems
   nextPage: 'Next page',

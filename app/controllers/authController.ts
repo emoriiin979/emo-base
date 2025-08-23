@@ -1,5 +1,4 @@
 import type { Context } from 'hono'
-import initLocale from '../../core/messages/initLocale.js'
 import z from 'zod'
 import { t } from 'i18next'
 import {
@@ -10,6 +9,7 @@ import {
 import {
   LoginPageView,
 } from '../../app/views/authView.js'
+import { CmsView } from '../views/cmsView.js'
 
 /**
  * ログインページ
@@ -31,9 +31,6 @@ export const loginPage = (c: Context) => {
  * @returns 
  */
 export const loginPassword = async (c: Context) => {
-  // 言語ファイル取得
-  initLocale(c)
-
   // スキーマ定義
   const loginSchema = z.object({
     userid: z.string()
@@ -79,9 +76,7 @@ export const loginPassword = async (c: Context) => {
       await createLoginLog(userid, ip, true)
       const session = c.get('session')
       await session.set('userid', userid)
-      return c.json({
-        message: t('loginSuccess'),
-      })
+      return c.redirect('/cms')
     } else {
       // 認証失敗
       await createLoginLog(userid, ip, false)
@@ -127,13 +122,8 @@ export const loginGoogleCallback = (c: Context) => {
  * @returns
  */
 export const logout = (c: Context) => {
-  // 言語ファイル取得
-  initLocale(c)
-
   const session = c.get('session')
   session.deleteSession()
-  return c.render(LoginPageView({
-    userid: '',
-    password: '',
-  }))
+  c.set('isLogin', false)
+  return c.redirect('/auth')
 }
