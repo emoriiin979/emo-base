@@ -1,0 +1,56 @@
+.cms-main {
+  width: 800px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+}
+
+.cms-main h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.cms-nocontent {
+  text-align: center;
+  color: #888888;
+  font-size: 1.1rem;
+}
+
+.cms-main ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cms-main li {
+  border-bottom: 1px solid #eeeeee;
+  padding: 20px 0;
+}
+
+.cms-title {
+  text-decoration: none;
+  color: #c44569;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.cms-info {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 6px 0 8px 0;
+}
+
+.cms-page-link {
+  font-size: 2rem;
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+.cms-page-link.active {
+  font-weight: bold;
+  pointer-events: none;
+}

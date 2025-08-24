@@ -34,7 +34,7 @@ export const CmsView = (props: Props) => {
       <Head title="CMS" />
       <body>
         <Header isLogin={props.isLogin} />
-        <div class="cms-container">
+        <main class="cms-main">
           {props.contents.length === 0 ? (
             <div class="cms-nocontent">
               {t('noData')}
@@ -63,7 +63,7 @@ export const CmsView = (props: Props) => {
               />
             </>
           )}
-        </div>
+        </main>
       </body>
     </html>
   )
