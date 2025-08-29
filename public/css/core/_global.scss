@@ -1,0 +1,46 @@
+@use '../app/settings';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: settings.$containerColor;
+}
+
+main {
+  background: settings.$backgroundColor;
+  flex: 1;
+}
+
+footer {
+  background: settings.$containerColor;
+}
+
+.btn {
+  padding: 15px;
+  background: settings.$btnBackgroundColor;
+  color: settings.$btnTextColor;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: settings.$btnHoverColor;
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}

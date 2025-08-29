@@ -1,4 +1,8 @@
-@use 'base';
-@use 'form';
-@use 'login';
-@use 'cms';
+@use './app/settings';
+
+@use './core/global';
+@use './core/components/form';
+@use './core/components/header';
+
+@use './app/views/auth';
+@use './app/views/cms';

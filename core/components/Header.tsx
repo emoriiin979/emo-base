@@ -15,7 +15,7 @@ export const Header: FC<HeaderProps> = (props) => {
     <header>
       {props.isLogin ? (
         <form action="/auth/logout" method="post" style={{ display: 'inline' }}>
-          <button type="submit" class="submit-btn">
+          <button type="submit" class="btn">
             {t('logout')}
           </button>
         </form>
