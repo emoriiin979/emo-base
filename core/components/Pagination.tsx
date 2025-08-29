@@ -19,7 +19,7 @@ const { currentPage, totalPages } = props
   pages.push(
     <a
       href={`?page=${currentPage - 1}`}
-      class="cms-page-link"
+      class="page-link"
       style={currentPage === 1 ? { display: 'none' } : {}}
     >
       &laquo; {t('prevPage')}
@@ -32,14 +32,14 @@ const { currentPage, totalPages } = props
       <>
         {i === currentPage ? (
           <span
-            class="cms-page-link active"
+            class="page-link active"
           >
             {i}
           </span>
         ) : (
           <a
             href={`?page=${i}`}
-            class="cms-page-link"
+            class="page-link"
           >
             {i}
           </a>
@@ -52,7 +52,7 @@ const { currentPage, totalPages } = props
   pages.push(
     <a
       href={`?page=${currentPage + 1}`}
-      class="cms-page-link"
+      class="page-link"
       style={currentPage === totalPages ? { display: 'none' } : {}}
     >
       {t('nextPage')} &raquo;
@@ -61,7 +61,7 @@ const { currentPage, totalPages } = props
 
   // ページリンクを返却
   return (
-    <div style={{ textAlign: 'center', marginTop: '24px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       {pages}
     </div>
   )

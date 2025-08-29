@@ -36,9 +36,9 @@ export const CmsView = (props: Props) => {
         <Header isLogin={props.isLogin} />
         <main class="cms-main">
           {props.contents.length === 0 ? (
-            <div class="cms-nocontent">
+            <p>
               {t('noData')}
-            </div>
+            </p>
           ) : (
             <>
               <Pagination
@@ -51,9 +51,9 @@ export const CmsView = (props: Props) => {
                     <a href={`/cms/${content.id}`} class="cms-title">
                       {content.title}
                     </a>
-                    <div class="cms-info">
+                    <p class="cms-info">
                       {content.author} - {new Date(content.createdAt).toLocaleDateString('ja-JP')}
-                    </div>
+                    </p>
                   </li>
                 ))}
               </ul>

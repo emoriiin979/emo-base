@@ -28,7 +28,7 @@ footer {
 
 .btn {
   padding: 15px;
-  background: settings.$btnBackgroundColor;
+  background-color: settings.$btnBackgroundColor;
   color: settings.$btnTextColor;
   border: none;
   border-radius: 10px;
@@ -38,9 +38,6 @@ footer {
   transition: all 0.3s ease;
 
   &:hover {
-    background: settings.$btnHoverColor;
-  }
-  &:active {
-    transform: translateY(0);
+    background-color: color-mix(in srgb, settings.$btnBackgroundColor 92%, black 8%);
   }
 }

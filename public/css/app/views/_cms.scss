@@ -1,54 +1,47 @@
+@use '../settings';
+
 .cms-main {
   width: 800px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.97);
   padding: 32px;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 
-.cms-main h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-align: center;
-  letter-spacing: 0.02em;
-}
+  // メッセージ（No Dataなど）
+  > p {
+    text-align: center;
+    color: #888888;
+    font-size: 1.1rem;
+  }
 
-.cms-nocontent {
-  text-align: center;
-  color: #888888;
-  font-size: 1.1rem;
-}
+  // コンテンツ一覧コンテナ
+  > ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
 
-.cms-main ul {
-  list-style: none;
-  padding: 0;
-}
+    // 各コンテンツ
+    > li {
+      border-bottom: 1px solid #eeeeee;
+      padding: 20px 0;
 
-.cms-main li {
-  border-bottom: 1px solid #eeeeee;
-  padding: 20px 0;
-}
+      // タイトル
+      > a {
+        text-decoration: none;
+        color: settings.$btnBackgroundColor;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
 
-.cms-title {
-  text-decoration: none;
-  color: #c44569;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.cms-info {
-  font-size: 0.95rem;
-  color: #666666;
-  margin: 6px 0 8px 0;
-}
-
-.cms-page-link {
-  font-size: 2rem;
-  margin-right: 16px;
-  text-decoration: none;
-}
-
-.cms-page-link.active {
-  font-weight: bold;
-  pointer-events: none;
+      // 最終編集日など
+      > p {
+        font-size: 0.95rem;
+        color: #666666;
+        margin: 6px 0 8px 0;
+      }
+    }
+  }
 }
