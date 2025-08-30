@@ -31,4 +31,4 @@ lerna-debug.log*
 dist/
 
 # prisma
-/app/generated/prisma
+/app/models/

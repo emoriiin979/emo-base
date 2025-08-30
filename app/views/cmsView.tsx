@@ -1,4 +1,4 @@
-import type { User } from '../generated/prisma/index.js'
+import type { User } from '../models/index.js'
 import { Head } from '../../core/components/Head.js'
 import { Header } from '../../core/components/Header.js'
 import { t } from 'i18next'
