@@ -1,5 +1,25 @@
+@use '../../app/settings';
+
 header {
   display: flex;
-  justify-content: flex-end;
-  padding: 16px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: settings.$containerColor;
+
+  > a {
+    > img {
+      height: 2.6rem;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+
+  > form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 }

@@ -5,11 +5,9 @@ import {
   isAccountLock,
   authPassword,
   createLoginLog,
-} from '../../app/services/authService.js'
-import {
-  LoginPageView,
-} from '../../app/views/authView.js'
-import { CmsView } from '../views/cmsView.js'
+} from '../services/authService.js'
+import { findUser } from '../services/userService.js'
+import { LoginPageView } from '../views/authView.js'
 
 /**
  * ログインページ
@@ -64,25 +62,26 @@ export const loginPassword = async (c: Context) => {
     // ログイン試行回数確認
     if (await isAccountLock(userid, ip)) {
       return c.render(LoginPageView({
-        userid: body.userid,
-        password: body.password,
+        userid: userid,
+        password: password,
         loginError: t('loginAttemptExceeded'),
       }))
     }
 
     // パスワード認証
-    if (await authPassword(userid, password)) {
+    const user = await findUser(userid)
+    if (user && await authPassword(user, password)) {
       // 認証成功
       await createLoginLog(userid, ip, true)
       const session = c.get('session')
-      await session.set('userid', userid)
+      await session.set('loginUser', user)
       return c.redirect('/cms')
     } else {
       // 認証失敗
       await createLoginLog(userid, ip, false)
       return c.render(LoginPageView({
-        userid: body.userid,
-        password: body.password,
+        userid: userid,
+        password: password,
         loginError: t('loginFailed'),
       }))
     }

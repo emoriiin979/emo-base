@@ -134,11 +134,12 @@ const paginate = (contents: Content[], page: number, perPage: number): Content[]
  * @param c Context
  * @returns 
  */
-export const searchContents = (c: Context) => {
+export const searchContents = async (c: Context) => {
+  const session = c.get('session')
   return c.render(CmsView({
     contents: paginate(blogs, parseInt(c.req.query('page') ?? '1'), PER_PAGE),
     currentPage: parseInt(c.req.query('page') ?? '1'),
     countTotalPages: Math.ceil(blogs.length / PER_PAGE),
-    isLogin: c.get('isLogin'),
+    loginUser: await session.get('loginUser'),
   }))
 }

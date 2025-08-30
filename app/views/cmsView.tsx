@@ -1,3 +1,4 @@
+import type { User } from '../generated/prisma/index.js'
 import { Head } from '../../core/components/Head.js'
 import { Header } from '../../core/components/Header.js'
 import { t } from 'i18next'
@@ -20,7 +21,7 @@ type Props = {
   contents: Content[]
   currentPage: number
   countTotalPages: number
-  isLogin: boolean
+  loginUser?: User
 }
 
 /**
@@ -33,7 +34,7 @@ export const CmsView = (props: Props) => {
     <html>
       <Head title="CMS" />
       <body>
-        <Header isLogin={props.isLogin} />
+        <Header loginUserName={props.loginUser?.name} />
         <main class="cms-main">
           {props.contents.length === 0 ? (
             <p>

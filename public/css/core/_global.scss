@@ -13,10 +13,6 @@ body {
   flex-direction: column;
 }
 
-header {
-  background: settings.$containerColor;
-}
-
 main {
   background: settings.$backgroundColor;
   flex: 1;
@@ -27,7 +23,7 @@ footer {
 }
 
 .btn {
-  padding: 15px;
+  padding: 0.8rem 1.6rem;
   background-color: settings.$btnBackgroundColor;
   color: settings.$btnTextColor;
   border: none;

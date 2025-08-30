@@ -15,19 +15,19 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  password String
+  id        String  @id
+  name      String
+  password  String
 
   @@map("users")
 }
 
 model Login {
-  id         Int      @id @default(autoincrement())
-  ip         String
-  name       String?  // ユーザーが存在しない場合は null
-  success    Boolean
-  created_at DateTime @default(now())
+  id          Int       @id @default(autoincrement())
+  ip          String
+  name        String?   // ユーザーが存在しない場合は null
+  success     Boolean
+  created_at  DateTime  @default(now())
 
   @@map("logins")
   @@index([ip])
