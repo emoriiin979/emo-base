@@ -123,6 +123,5 @@ export const loginGoogleCallback = (c: Context) => {
 export const logout = (c: Context) => {
   const session = c.get('session')
   session.deleteSession()
-  c.set('isLogin', false)
   return c.redirect('/auth')
 }

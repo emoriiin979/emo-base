@@ -14,7 +14,8 @@ authRoutes.post('/logout', logout)
 
 // ログイン中の場合はリダイレクト
 const redirectMiddleware: MiddlewareHandler = async (c, next) => {
-  if (await c.get('isLogin')) {
+  const session = c.get('session')
+  if (await session.get('loginUser')) {
     return c.redirect('/cms')
   }
   await next()

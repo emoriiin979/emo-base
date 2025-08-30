@@ -11,7 +11,6 @@ import cmsRoutes from './routes/cmsRoute.js'
 import { healthPage } from './controllers/healthController.js'
 import { handleNodeAdapter } from '../core/adapters/index.js'
 import ipMiddleware from '../core/middlewares/ipMiddleware.js'
-import authMiddleware from '../core/middlewares/authMiddleware.js'
 
 const app = new Hono()
 
@@ -41,9 +40,6 @@ app.use('/*', sessionMiddleware({
 }))
 app.use('/*', initSessionMiddleware)
 
-// 認証情報取得
-app.use('/*', authMiddleware)
-
 // CSRF設定
 app.use(csrf())
 
@@ -53,7 +49,8 @@ app.get('/', healthPage)
 
 // 未ログインの場合はリダイレクト
 const redirectMiddleware: MiddlewareHandler = async (c, next) => {
-  if (!c.get('isLogin')) {
+  const session = c.get('session')
+  if (!session.get('loginUser')) {
     return c.redirect('/auth')
   }
   await next()
