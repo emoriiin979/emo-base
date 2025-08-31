@@ -3,22 +3,17 @@ import { Head } from '../../core/components/Head.js'
 import { Header } from '../../core/components/Header.js'
 import { t } from 'i18next'
 import { Pagination } from '../../core/components/Pagination.js'
-
-/**
- * コンテンツ型
- */
-type Content = {
-  id: number
-  title: string
-  author: string
-  createdAt: string
-}
+import { Prisma } from '../models/index.js'
 
 /**
  * 引数型
  */
+type ContentWithUser = Prisma.ContentGetPayload<{
+  include: { user: true }
+}>
+
 type Props = {
-  contents: Content[]
+  contents: ContentWithUser[]
   currentPage: number
   countTotalPages: number
   loginUser?: User
@@ -53,7 +48,7 @@ export const CmsView = (props: Props) => {
                       {content.title}
                     </a>
                     <p class="cms-info">
-                      {content.author} - {new Date(content.createdAt).toLocaleDateString('ja-JP')}
+                      {content.user.name} - {new Date(content.created_at).toLocaleDateString('ja-JP')}
                     </p>
                   </li>
                 ))}

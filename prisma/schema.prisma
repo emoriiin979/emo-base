@@ -18,6 +18,7 @@ model User {
   id        String  @id
   name      String
   password  String
+  contents  Content[]
 
   @@map("users")
 }
@@ -32,4 +33,15 @@ model Login {
   @@map("logins")
   @@index([ip])
   @@index([created_at])
+}
+
+model Content {
+  id          String    @id @default(uuid())
+  user        User      @relation(fields: [user_id], references: [id])
+  user_id     String    @map("user_id")
+  title       String
+  body        String    @db.Text
+  created_at  DateTime  @default(now())
+
+  @@map("contents")
 }

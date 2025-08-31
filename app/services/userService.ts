@@ -13,7 +13,7 @@ const prisma = globalForPrisma.prisma ?? new PrismaClient()
  * @param userid string - ユーザーID
  * @returns Promise<User|null> - ユーザー情報
  */
-export const findUser = async (userid: string): Promise<User | null> => {
+export const findUser = async (userid: string): Promise<User|null> => {
   return await prisma.user.findFirst({
     where: {
       id: userid,
