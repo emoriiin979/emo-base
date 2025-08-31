@@ -1,0 +1,22 @@
+@use '../../app/settings';
+@use '../global';
+
+.page-link {
+  @extend .btn;
+  font-weight: normal;
+  background-color: settings.$itemBackgroundColor;
+  color: black;
+  margin-right: 1rem;
+  text-decoration: none;
+  height: 100%;
+
+  &:hover {
+    background-color: color-mix(in srgb, settings.$itemBackgroundColor 92%, black 8%);
+  }
+  &.active {
+    font-weight: bold;
+    color: white;
+    pointer-events: none;
+    background-color: settings.$btnBackgroundColor;
+  }
+}

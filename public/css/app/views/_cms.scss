@@ -1,0 +1,47 @@
+@use '../settings';
+
+.cms-main {
+  width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.97);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  // メッセージ（No Dataなど）
+  > p {
+    text-align: center;
+    color: #888888;
+    font-size: 1.1rem;
+  }
+
+  // コンテンツ一覧コンテナ
+  > ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+
+    // 各コンテンツ
+    > li {
+      border-bottom: 1px solid #eeeeee;
+      padding: 20px 0;
+
+      // タイトル
+      > a {
+        text-decoration: none;
+        color: settings.$btnBackgroundColor;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      // 最終編集日など
+      > p {
+        font-size: 0.95rem;
+        color: #666666;
+        margin: 6px 0 8px 0;
+      }
+    }
+  }
+}

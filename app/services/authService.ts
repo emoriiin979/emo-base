@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../app/generated/prisma/index.js'
+import { PrismaClient, type User } from '../models/index.js'
 import bcrypt from 'bcrypt'
 
 /**
@@ -14,7 +14,10 @@ const MAX_ATTEMPTS: number = 5
 /**
  * Prismaクライアント
  */
-const prisma = new PrismaClient()
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined
+}
+const prisma = globalForPrisma.prisma ?? new PrismaClient()
 
 /**
  * アカウントロック確認
@@ -58,16 +61,13 @@ export const isAccountLock = async (userid: string, ip: string) => {
 }
 
 /**
- * パスワード認証
+ * パスワード照合
  * @param userid string - ユーザーID
  * @param password string - パスワード
  * @returns Promise<boolean> - 認証成否
  */
-export const authPassword = async (userid: string, password: string) => {
-  const user = await prisma.user.findFirst({
-    where: { name: userid }
-  })
-  return user && await bcrypt.compare(password, user.password)
+export const authPassword = async (user: User, password: string) => {
+  return await bcrypt.compare(password, user.password)
 }
 
 /**

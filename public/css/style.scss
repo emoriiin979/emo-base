@@ -1,0 +1,9 @@
+@use './app/settings';
+
+@use './core/global';
+@use './core/components/form';
+@use './core/components/pagination';
+@use './core/components/header';
+
+@use './app/views/auth';
+@use './app/views/cms';
