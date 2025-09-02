@@ -1,5 +1,5 @@
 import { t } from 'i18next'
-import { Head, Header, Pagination } from '@emo-components/index.js'
+import { Head, Header, Pagination } from '@emo-components'
 import { Prisma, type User } from '../models/index.js'
 
 /**

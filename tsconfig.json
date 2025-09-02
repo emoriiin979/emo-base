@@ -13,10 +13,10 @@
     "outDir": "./dist",
     "rootDir": ".",
     "paths": {
-      "@emo-adapters/*": ["./packages/adapters/*"],
-      "@emo-components/*": ["./packages/components/*"],
-      "@emo-middlewares/*": ["./packages/middlewares/*"],
-      "@emo-session/*": ["./packages/session/*"]
+      "@emo-adapters": ["./packages/adapters/index.ts"],
+      "@emo-components": ["./packages/components/index.ts"],
+      "@emo-middlewares": ["./packages/middlewares/index.ts"],
+      "@emo-session": ["./packages/session/index.ts"]
     }
   },
   "exclude": ["node_modules"]
