@@ -1,5 +1,5 @@
-import { PrismaClient, type Content } from '../models/index.js'
-import { Prisma } from '../models/index.js'
+import { Prisma, PrismaClient } from '../models/index.js'
+
 /**
  * Prismaクライアント
  */
