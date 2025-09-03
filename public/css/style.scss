@@ -1,9 +1,8 @@
-@use './app/settings';
+@use './common/settings';
+@use './common/global';
+@use './common/components/form';
+@use './common/components/pagination';
+@use './common/components/header';
 
-@use './core/global';
-@use './core/components/form';
-@use './core/components/pagination';
-@use './core/components/header';
-
-@use './app/views/auth';
-@use './app/views/cms';
+@use './app/auth';
+@use './app/cms';
