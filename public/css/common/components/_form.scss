@@ -1,0 +1,45 @@
+@use '../settings';
+@use '../global';
+
+.form-group {
+  margin-bottom: 2rem;
+
+  & input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+
+    &:focus {
+      outline: none;
+      border-color: settings.$highlightColor;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+    }
+  }
+}
+
+.submit-btn {
+  @extend .btn;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background: #e1e5e9;
+  margin: 1rem 0;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.95rem;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-left: 2px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
