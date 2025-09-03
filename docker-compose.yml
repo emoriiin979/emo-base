@@ -2,12 +2,12 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./etc/node/Dockerfile
+      dockerfile: ./etc/bun/Dockerfile
     ports:
       - 3000:3000
     volumes:
       - .:/app
-    command: npm run dev
+    command: bun run dev
     depends_on:
       - db
   db:

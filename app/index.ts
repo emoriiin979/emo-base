@@ -2,9 +2,8 @@ import 'dotenv/config'
 import { Hono, type MiddlewareHandler } from 'hono'
 import { languageDetector } from 'hono/language'
 import { csrf } from 'hono/csrf'
+import { serveStatic } from 'hono/bun'
 import { sessionMiddleware } from 'hono-sessions'
-import { serveStatic } from '@hono/node-server/serve-static'
-import { handleNodeAdapter } from '@emo-adapters'
 import { initLocaleMiddleware, ipMiddleware } from '@emo-middlewares'
 import { FileStore } from '@emo-session'
 import authRoutes from './routes/authRoute.js'
@@ -59,5 +58,7 @@ app.use('/*', redirectMiddleware)
 // ルーティング設定(ログイン必須)
 app.route('/cms', cmsRoutes)
 
-// アダプター設定
-handleNodeAdapter(app)
+export default {
+  port: 3000,
+  fetch: app.fetch,
+}

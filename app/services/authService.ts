@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { PrismaClient, type User } from '../models/index.js'
 
 /**
@@ -67,7 +67,7 @@ export const isAccountLock = async (userid: string, ip: string) => {
  * @returns Promise<boolean> - 認証成否
  */
 export const authPassword = async (user: User, password: string) => {
-  return await bcrypt.compare(password, user.password)
+  return await bcrypt.compareSync(password, user.password)
 }
 
 /**
