@@ -1,5 +1,5 @@
-import initLocaleMiddleware from './initLocaleMiddleware.js'
-import ipMiddleware from './ipMiddleware.js'
+import initLocaleMiddleware from './src/initLocaleMiddleware.js'
+import ipMiddleware from './src/ipMiddleware.js'
 
 export {
   initLocaleMiddleware,

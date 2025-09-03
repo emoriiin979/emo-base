@@ -1,3 +1,3 @@
-import FileStore from './stores/FileStore.js'
+import FileStore from './src/FileStore.js'
 
 export { FileStore }
