@@ -1,9 +1,6 @@
-import type { User } from '../models/index.js'
-import { Head } from '../../core/components/Head.js'
-import { Header } from '../../core/components/Header.js'
 import { t } from 'i18next'
-import { Pagination } from '../../core/components/Pagination.js'
-import { Prisma } from '../models/index.js'
+import { Head, Header, Pagination } from '@emo-components'
+import { Prisma, type User } from '../models/index.js'
 
 /**
  * 引数型

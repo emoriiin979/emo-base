@@ -5,12 +5,15 @@
     "strict": true,
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": ".",
+    "paths": {
+      "@emo-components": ["./packages/components/index.ts"],
+      "@emo-middlewares": ["./packages/middlewares/index.ts"],
+      "@emo-session": ["./packages/session/index.ts"]
+    }
   },
   "exclude": ["node_modules"]
 }

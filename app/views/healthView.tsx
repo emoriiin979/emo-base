@@ -1,4 +1,4 @@
-import { Head } from '../../core/components/Head.js'
+import { Head } from '@emo-components'
 
 export const HealthPageView = () => {
   return (

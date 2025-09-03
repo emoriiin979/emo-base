@@ -1,16 +1,14 @@
 import 'dotenv/config'
 import { Hono, type MiddlewareHandler } from 'hono'
-import { serveStatic } from '@hono/node-server/serve-static'
 import { languageDetector } from 'hono/language'
-import FileStore from '../core/session/stores/FileStore.js'
-import { sessionMiddleware } from 'hono-sessions'
-import initSessionMiddleware from '../core/middlewares/initSessionMiddleware.js'
 import { csrf } from 'hono/csrf'
+import { serveStatic } from 'hono/bun'
+import { sessionMiddleware } from 'hono-sessions'
+import { initLocaleMiddleware, ipMiddleware } from '@emo-middlewares'
+import { FileStore } from '@emo-session'
 import authRoutes from './routes/authRoute.js'
 import cmsRoutes from './routes/cmsRoute.js'
 import { healthPage } from './controllers/healthController.js'
-import { handleNodeAdapter } from '../core/adapters/index.js'
-import ipMiddleware from '../core/middlewares/ipMiddleware.js'
 
 const app = new Hono()
 
@@ -22,6 +20,7 @@ app.use(languageDetector({
   supportedLanguages: ['ja', 'en'],
   fallbackLanguage: 'ja',
 }))
+app.use('/*', initLocaleMiddleware)
 
 // IPアドレス取得
 app.use('/*', ipMiddleware)
@@ -38,7 +37,6 @@ app.use('/*', sessionMiddleware({
     sameSite: 'Lax',
   },
 }))
-app.use('/*', initSessionMiddleware)
 
 // CSRF設定
 app.use(csrf())
@@ -60,5 +58,7 @@ app.use('/*', redirectMiddleware)
 // ルーティング設定(ログイン必須)
 app.route('/cms', cmsRoutes)
 
-// アダプター設定
-handleNodeAdapter(app)
+export default {
+  port: 3000,
+  fetch: app.fetch,
+}
