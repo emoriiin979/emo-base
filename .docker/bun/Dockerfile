@@ -1,4 +1,4 @@
-ARG BUN_IMAGE=oven/bun:1.2.21-debian
+ARG BUN_IMAGE
 FROM ${BUN_IMAGE}
 
 WORKDIR /app

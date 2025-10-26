@@ -1,5 +1,5 @@
 import { t } from 'i18next'
-import { Head } from '@emo-components'
+import { Head } from './components/Head.js'
 
 /**
  * 引数型

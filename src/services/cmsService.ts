@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '../models/index.js'
+import { Prisma, PrismaClient } from '../models/generated/index.js'
 
 /**
  * Prismaクライアント
