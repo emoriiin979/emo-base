@@ -2,10 +2,10 @@
   "name": "emo-base",
   "type": "module",
   "scripts": {
-    "dev": "bun dev:css & bun --watch app/index.ts",
+    "dev": "bun dev:css & bun --watch src/index.ts",
     "dev:css": "sass --watch public/css/style.scss:public/css/dist/style.css",
-    "build": "bun build app/index.ts --outdir dist --minify",
-    "start": "bun app/index.ts"
+    "build": "bun build src/index.ts --outdir dist --minify",
+    "start": "bun src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.14.0",

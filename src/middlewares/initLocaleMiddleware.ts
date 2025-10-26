@@ -1,6 +1,7 @@
 import type { MiddlewareHandler } from 'hono'
 import i18next from 'i18next'
-import { jaTranslations, enTranslations } from '../../../config/index.js'
+import jaTranslations from '../messages/ja.js'
+import enTranslations from '../messages/en.js'
 
 const initLocaleMiddleware: MiddlewareHandler = async (c, next) => {
   i18next.init({
@@ -15,6 +16,7 @@ const initLocaleMiddleware: MiddlewareHandler = async (c, next) => {
       },
     },
   })
+
   await next()
 }
 

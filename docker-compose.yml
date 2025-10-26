@@ -2,7 +2,9 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./etc/bun/Dockerfile
+      dockerfile: .docker/bun/Dockerfile
+      args:
+        BUN_IMAGE: ${BUN_IMAGE}
     ports:
       - 3000:3000
     volumes:
@@ -12,11 +14,13 @@ services:
       - db
   db:
     build:
-      context: ./etc/mysql
+      context: .docker/mysql
+      args:
+        MYSQL_IMAGE: ${MYSQL_IMAGE}
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
     ports:
       - 3306:3306
     volumes:
-      - ./etc/mysql/data:/var/lib/mysql
+      - .docker/mysql/data:/var/lib/mysql

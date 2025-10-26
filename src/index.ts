@@ -1,14 +1,15 @@
 import 'dotenv/config'
 import { Hono, type MiddlewareHandler } from 'hono'
-import { languageDetector } from 'hono/language'
-import { csrf } from 'hono/csrf'
 import { serveStatic } from 'hono/bun'
+import { csrf } from 'hono/csrf'
+import { languageDetector } from 'hono/language'
 import { sessionMiddleware } from 'hono-sessions'
-import { initLocaleMiddleware, ipMiddleware } from '@emo-middlewares'
-import { FileStore } from '@emo-session'
 import authRoutes from './routes/authRoute.js'
 import cmsRoutes from './routes/cmsRoute.js'
 import { healthPage } from './controllers/healthController.js'
+import initLocaleMiddleware from './middlewares/initLocaleMiddleware.js'
+import { FileStore } from './middlewares/session/FileStore.js'
+import ipMiddleware from './middlewares/ipMiddleware.js'
 
 const app = new Hono()
 
@@ -16,7 +17,7 @@ const app = new Hono()
 app.use('/*', serveStatic({ root: './public' }))
 
 // 言語情報取得
-app.use(languageDetector({
+app.use('/*', languageDetector({
   supportedLanguages: ['ja', 'en'],
   fallbackLanguage: 'ja',
 }))
