@@ -19,8 +19,10 @@ const enTranslations = {
   googleLogin: 'Login by Google',
   login: 'Login',
   logout: 'Logout',
-  nextPage: 'Next page',
-  prevPage: 'Prev page',
+  nextPage: 'Next',
+  prevPage: 'Prev',
+  firstPage: 'First',
+  lastPage: 'Last',
 }
 
 export default enTranslations

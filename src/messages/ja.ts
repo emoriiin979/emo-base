@@ -19,8 +19,10 @@ const jaTranslations = {
   googleLogin: 'Googleでログイン',
   login: 'ログイン',
   logout: 'ログアウト',
-  nextPage: '次のページ',
-  prevPage: '前のページ',
+  nextPage: '次',
+  prevPage: '前',
+  firstPage: '最初',
+  lastPage: '最後',
 }
 
 export default jaTranslations

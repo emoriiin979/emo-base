@@ -2,23 +2,27 @@
   "name": "emo-base",
   "type": "module",
   "scripts": {
-    "dev": "bun dev:css & bun --watch src/index.ts",
-    "dev:css": "sass --watch public/css/style.scss:public/css/dist/style.css",
-    "build": "bun build src/index.ts --outdir dist --minify",
+    "dev": "bun run build:css && bun run dev:ts",
+    "dev:ts": "bun --watch src/index.ts",
+    "build": "bun run build:css && bun run build:ts",
+    "build:ts": "bun build src/index.ts --outdir dist --minify",
+    "build:css": "bunx @tailwindcss/cli -i ./public/css/style.css -o ./public/css/dist/style.css",
     "start": "bun src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.14.0",
+    "@tailwindcss/cli": "^4.1.16",
     "bcryptjs": "^3.0.2",
     "hono": "^4.8.12",
     "hono-sessions": "^0.8.0",
     "i18next": "^25.3.6",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.16",
     "zod": "^4.0.17"
   },
   "devDependencies": {
     "@types/bun": "^1.2.21",
     "dotenv": "^17.2.1",
-    "prisma": "^6.14.0",
-    "sass": "^1.90.0"
+    "prisma": "^6.14.0"
   }
 }

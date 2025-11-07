@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-main-light: #ffd1e3;
+  --color-main-dark: #ff77a7;
+  --color-main-dark-hover: color-mix(in srgb, #ff77a7 92%, black 8%);
+  --color-highlight: #ffd1e3;
+  --color-item: #edeeee;
+  --color-item-hover: color-mix(in srgb, #edeeee 92%, black 8%);
+  --font-display: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

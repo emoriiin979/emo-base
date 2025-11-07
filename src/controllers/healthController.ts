@@ -1,5 +1,5 @@
 import type { Context } from 'hono'
-import { HealthPageView } from '../views/healthView.js'
+import { healthView } from '../views/healthView.js'
 
 /**
  * ヘルスチェックページ
@@ -8,5 +8,5 @@ import { HealthPageView } from '../views/healthView.js'
  * @returns 
  */
 export const healthPage = (c: Context) => {
-  return c.render(HealthPageView())
+  return c.render(healthView())
 }
