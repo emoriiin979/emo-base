@@ -1,12 +1,9 @@
-import { Head } from './components/Head.js'
+import { App } from './components/layouts/App.js';
 
-export const HealthPageView = () => {
+export const healthView = () => {
   return (
-    <html>
-      <Head title="Health" />
-      <body>
-        <h1>It works!</h1>
-      </body>
-    </html>
+    <App title="Health">
+      <h1>It works!</h1>
+    </App>
   )
 }

@@ -7,7 +7,7 @@ import {
   createLoginLog,
 } from '../services/authService.js'
 import { findUser } from '../services/userService.js'
-import { LoginPageView } from '../views/authView.js'
+import { loginView } from '../views/authView.js'
 
 /**
  * ログインページ
@@ -16,7 +16,7 @@ import { LoginPageView } from '../views/authView.js'
  * @returns 
  */
 export const loginPage = (c: Context) => {
-  return c.render(LoginPageView({
+  return c.render(loginView({
     userid: '',
     password: '',
   }))
@@ -49,7 +49,7 @@ export const loginPassword = async (c: Context) => {
           errorMap[issue.path[0] as string] = issue.message
         }
       }
-      return c.render(LoginPageView({
+      return c.render(loginView({
         userid: body.userid,
         password: body.password,
         useridError: errorMap.userid,
@@ -61,7 +61,7 @@ export const loginPassword = async (c: Context) => {
 
     // ログイン試行回数確認
     if (await isAccountLock(userid, ip)) {
-      return c.render(LoginPageView({
+      return c.render(loginView({
         userid: userid,
         password: password,
         loginError: t('loginAttemptExceeded'),
@@ -79,14 +79,14 @@ export const loginPassword = async (c: Context) => {
     } else {
       // 認証失敗
       await createLoginLog(userid, ip, false)
-      return c.render(LoginPageView({
+      return c.render(loginView({
         userid: userid,
         password: password,
         loginError: t('loginFailed'),
       }))
     }
   } catch (e) {
-    return c.render(LoginPageView({
+    return c.render(loginView({
       userid: '',
       password: '',
       loginError: t('unknownServerError'),

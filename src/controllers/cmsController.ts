@@ -1,6 +1,6 @@
 import type { Context } from 'hono'
 import { countContents, findContents } from '../services/cmsService.js'
-import { CmsView } from '../views/cmsView.js'
+import { cmsView } from '../views/cmsView.js'
 
 /**
  * 1ページに表示するコンテンツ数
@@ -23,7 +23,7 @@ export const searchContents = async (c: Context) => {
     currentPage,
     PER_PAGE,
   ) : []
-  return c.render(CmsView({
+  return c.render(cmsView({
     contents: contents,
     currentPage: currentPage,
     countTotalPages: Math.ceil(total / PER_PAGE),
